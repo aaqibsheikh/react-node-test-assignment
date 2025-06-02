@@ -1,4 +1,4 @@
-import { FormControl, Input, InputAdornment, } from "@mui/material";
+import { FormControl, Input, InputAdornment } from "@mui/material";
 import { CFormSelect } from "@coreui/react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 
 const Signup = () => {
   const PasswordButtonInitialStyle = {
-    opacity: 0,
+    opacity: 0
   };
 
   /////////////////////////////////// VARIABLES /////////////////////////////////
@@ -27,7 +27,7 @@ const Signup = () => {
     phone: "",
     email: "",
     city: "",
-    password: "",
+    password: ""
   });
   const [inputError, setInputError] = useState({
     firstName: "",
@@ -35,10 +35,12 @@ const Signup = () => {
     username: "",
     phone: "",
     email: "",
-    password: "",
+    password: ""
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordButton, setShowPasswordButton] = useState(PasswordButtonInitialStyle);
+  const [showPasswordButton, setShowPasswordButton] = useState(
+    PasswordButtonInitialStyle
+  );
 
   //////////////////////////////////////// USE EFFECTS ////////////////////////////////
 
@@ -46,10 +48,12 @@ const Signup = () => {
   const handleChange = (field, value) => {
     const { firstName, lastName, username, email, phone, password } = userData;
 
-    if (firstName.length > 3) setInputError((pre) => ({ ...pre, firstName: "" }));
+    if (firstName.length > 3)
+      setInputError((pre) => ({ ...pre, firstName: "" }));
     if (lastName.length < 3) setInputError((pre) => ({ ...pre, lastName: "" }));
     if (username.length < 3) setInputError((pre) => ({ ...pre, username: "" }));
-    if (validator.validate(email)) setInputError((pre) => ({ ...pre, email: "" }));
+    if (validator.validate(email))
+      setInputError((pre) => ({ ...pre, email: "" }));
     if (phone.length >= 10) setInputError((pre) => ({ ...pre, phone: "" }));
     if (password.length > 6) setInputError((pre) => ({ ...pre, password: "" }));
 
@@ -58,66 +62,64 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('aaaaaaaaaaa')
 
-    // if (validateForm()) { return; }
-    //     console.log('rrrrrrrr')
+    if (validateForm()) {
+      return;
+    }
 
-    dispatch(register(userData, navigate))
-      .then(() => {
-        toast.success("Account Created Successfully. Please Login");
-      })
+    dispatch(register(userData, navigate)).then(() => {
+      toast.success("Account Created Successfully. Please Login");
+    });
   };
 
   const validateForm = () => {
     const { firstName, lastName, username, email, phone, password } = userData;
-console.log('userData', userData)
     if (!firstName) {
-      toast.error('First Name is required')
+      toast.error("First Name is required");
       return false;
     }
     if (firstName.length < 3) {
-      toast.error('First Name should be atleast of 3 characters')
+      toast.error("First Name should be atleast of 3 characters");
       return false;
     }
     if (!lastName) {
-      toast.error('Last Name is required')
+      toast.error("Last Name is required");
       return false;
     }
     if (lastName.length < 3) {
-      toast.error('Last Name should be atleast of 3 characters')
+      toast.error("Last Name should be atleast of 3 characters");
       return false;
     }
     if (!username) {
-      toast.error('Username is required')
+      toast.error("Username is required");
       return false;
     }
     if (username.length < 3) {
-      toast.error('Username should be atleast of 3 characters')
+      toast.error("Username should be atleast of 3 characters");
       return false;
     }
     if (email && !validator.validate(email)) {
-      toast.error('Make sure to provide a valid email')
+      toast.error("Make sure to provide a valid email");
       return false;
     }
     if (!phone) {
-      toast.error('Phone Number is required')
+      toast.error("Phone Number is required");
       return false;
     }
     if (phone.length < 0) {
-      toast.error('Please provide a valid phone number')
+      toast.error("Please provide a valid phone number");
       return false;
     }
     if (!password) {
-      toast.error('Password is required')
+      toast.error("Password is required");
       return false;
     }
     if (password.length < 6) {
-      toast.error('Password must be of atleast 6 characters')
+      toast.error("Password must be of atleast 6 characters");
       return false;
     }
     return true;
-  }
+  };
 
   const handleToggleVisibility = (e) => {
     e.preventDefault();
@@ -125,9 +127,8 @@ console.log('userData', userData)
   };
 
   const changeBackgroundColor = () => {
-    setShowPasswordButton({ ...showPasswordButton, opacity: 1, });
+    setShowPasswordButton({ ...showPasswordButton, opacity: 1 });
   };
-
 
   ////////////////////////////////////////////////////////// RENDER //////////////////////////////////////////////////////
   return (
@@ -149,7 +150,8 @@ console.log('userData', userData)
             </p>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col gap-[12px] w-auto pl-[2rem] pt-[1rem] ">
+              className="flex flex-col gap-[12px] w-auto pl-[2rem] pt-[1rem] "
+            >
               <div className="flex flex-col gap-6">
                 {/* firstname */}
                 <Input
@@ -231,7 +233,8 @@ console.log('userData', userData)
                         <button
                           style={showPasswordButton}
                           onClick={handleToggleVisibility}
-                          className="absolute right-0">
+                          className="absolute right-0"
+                        >
                           {showPassword ? (
                             <PiEyeSlashThin className="text-[25px] m-2 text-black" />
                           ) : (
@@ -246,14 +249,22 @@ console.log('userData', userData)
 
               <button
                 type="submit"
-                className={`w-[20rem]  hover:bg-[#45b8e2] mt-4 p-[6px] rounded-lg transition-all text-white font-medium tracking-wider ${isFetching ? "bg-[#17a2b8]  cursor-not-allowed" : "bg-[#20aee3]"}`}
-                variant="contained">
+                className={`w-[20rem]  hover:bg-[#45b8e2] mt-4 p-[6px] rounded-lg transition-all text-white font-medium tracking-wider ${
+                  isFetching
+                    ? "bg-[#17a2b8]  cursor-not-allowed"
+                    : "bg-[#20aee3]"
+                }`}
+                variant="contained"
+              >
                 {isFetching ? "Submitting..." : "Sign Up"}
               </button>
 
               <p className="font-Mulish font-light text-slate-500 pl-10">
                 Already have an account?
-                <Link to="/auth/login" className="text-sky-400 hover:text-sky-600">
+                <Link
+                  to="/auth/login"
+                  className="text-sky-400 hover:text-sky-600"
+                >
                   {" "}
                   Login
                 </Link>

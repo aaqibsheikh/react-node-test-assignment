@@ -54,7 +54,6 @@ const App = () => {
   }, [window.innerWidth]);
 
   ///////////////////////////////////// Functions ////////////////////////////////////////
-  console.log("loggedUser.role", loggedUser);
   return (
     <div>
       <div className="flex flex-col w-full h-screen bg-[#f6f9fa]">
