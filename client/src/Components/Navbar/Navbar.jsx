@@ -145,7 +145,16 @@ const Navbar = ({ setShowSidebar, showSidebar, open, setOpen }) => {
             </IconButton>
             <div>
               <p className="text-sky-400 text-xl gap-1 flex items-center">
-                <PiTimerLight className="text-[25px]" /> {date.toLocaleTimeString()}
+                <PiTimerLight className="text-[25px]" />   {date.toLocaleString("en-US", {
+              // weekday: "short",
+              // year: "numeric",
+              // month: "short",
+              // day: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+              second: "numeric",
+              timeZoneName: "short"
+            })}
               </p>
             </div>
           </div>
