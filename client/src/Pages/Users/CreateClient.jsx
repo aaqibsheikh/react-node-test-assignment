@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createEmployee } from "../../redux/action/user";
+import { createClient } from "../../redux/action/user";
 import { Dialog, DialogContent, DialogTitle, DialogActions, Slide, TextField, Divider } from "@mui/material";
 import { PiNotepad, PiXLight } from "react-icons/pi";
 
@@ -41,7 +41,7 @@ const CreateClient = ({ open, setOpen }) => {
       if (!clientData[field]) newErrors[field] = `${field} is required`;
     });
     if (Object.keys(newErrors).length > 0) return setErrors(newErrors);
-    dispatch(createEmployee(clientData, setOpen));
+    dispatch(createClient(clientData, setOpen));
     setClientData(initialState);
   };
 
